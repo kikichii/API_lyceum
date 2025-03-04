@@ -37,7 +37,8 @@ class Example(QMainWindow):
         response = requests.get(map_api_server, params=map_params)
         im = BytesIO(response.content)
         opened_image = Image.open(im)
-        self.pixmap = QPixmap(opened_image)
+        opened_image.save('img', 'PNG')
+        self.pixmap = QPixmap('img')
         # Если картинки нет, то QPixmap будет пустым,
         # а исключения не будет
         self.image = QLabel(self)
